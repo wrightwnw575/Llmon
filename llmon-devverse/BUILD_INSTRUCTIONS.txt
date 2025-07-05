@@ -1,0 +1,49 @@
+LLMON DevVerse Build Instructions
+
+=== Electron Desktop App ===
+1. Install Electron dependencies:
+   npm install electron electron-builder cross-env --save-dev
+
+2. Build desktop apps:
+   npm run build:electron
+
+3. Find builds in dist/ folder:
+   - Windows: LLMON DevVerse Setup.exe
+   - macOS: LLMON DevVerse.dmg  
+   - Linux: LLMON DevVerse.AppImage
+
+=== Docker Container ===
+1. Build Docker image:
+   docker build -t llmon-devverse .
+
+2. Run container:
+   docker run -p 3000:3000 -e GEMINI_API_KEY=your-key llmon-devverse
+
+3. Or use docker-compose:
+   docker-compose up -d
+
+=== Cloud Deployment ===
+
+Vercel:
+1. Install Vercel CLI: npm install -g vercel
+2. Login: vercel login
+3. Deploy: vercel --prod
+
+Railway:
+1. Install Railway CLI: npm install -g @railway/cli
+2. Login: railway login
+3. Deploy: railway up
+
+Heroku:
+1. Create app: heroku create your-llmon-app
+2. Push: git push heroku main
+
+=== Portable Executables ===
+1. Install pkg: npm install -g pkg
+2. Build: pkg server/index.js --targets node18-linux-x64,node18-macos-x64,node18-win-x64 --out-path dist
+
+=== Web Distribution ===
+1. Copy files to deployment server
+2. Run: npm install
+3. Set GEMINI_API_KEY environment variable
+4. Start: npm start

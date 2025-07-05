@@ -3,12 +3,23 @@
   "version": "1.0.0",
   "description": "LLMON: Next-Gen Developer Operating System with LLM Agents",
   "type": "module",
-  "main": "server/index.js",
+  "main": "electron-main.js",
   "scripts": {
     "dev": "node server/index.js",
-    "build": "echo 'Building LLMON...'",
     "start": "node server/index.js",
-    "test": "node test-system.js"
+    "build": "npm run build:web && npm run build:electron",
+    "build:web": "echo 'Web build complete'",
+    "build:electron": "electron-builder",
+    "build:docker": "docker build -t llmon-devverse .",
+    "build:all": "npm run build:web && npm run build:electron && npm run build:docker",
+    "electron": "electron .",
+    "electron:dev": "cross-env NODE_ENV=development electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --publish=never",
+    "test": "node test-system.js",
+    "docker:run": "docker run -p 3000:3000 llmon-devverse",
+    "deploy:vercel": "vercel --prod",
+    "deploy:railway": "railway up"
   },
   "dependencies": {
     "express": "^4.18.2",
@@ -18,6 +29,40 @@
     "socket.io": "^4.7.4",
     "uuid": "^9.0.1",
     "chokidar": "^3.5.3"
+  },
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.6.4",
+    "cross-env": "^7.0.3"
+  },
+  "build": {
+    "appId": "com.scoutai.llmon",
+    "productName": "LLMON DevVerse",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "server/**/*",
+      "client/**/*",
+      "package.json",
+      "electron-main.js"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "assets/icon.icns"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": ["llm", "agents", "development", "gameboy", "ui"],
   "author": "Scout AI",
