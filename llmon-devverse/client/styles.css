@@ -1,0 +1,772 @@
+/* LLMON DevVerse Game Boy Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+:root {
+    --gameboy-bg: #8fbc8f;
+    --gameboy-dark: #2d5930;
+    --gameboy-light: #b8d8b8;
+    --screen-bg: #9bbc0f;
+    --screen-dark: #306230;
+    --screen-light: #8bac0f;
+    --pixel-green: #0f380f;
+    --button-red: #dc143c;
+    --button-blue: #4169e1;
+    --wire-color: #ff6b35;
+    --suno-color: #4ecdc4;
+    --djw-color: #ff6b9d;
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    font-family: 'Orbitron', monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gameboy-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.gameboy-shell {
+    width: 400px;
+    height: 650px;
+    background: var(--gameboy-bg);
+    border-radius: 20px 20px 60px 20px;
+    padding: 20px;
+    box-shadow: 
+        inset 5px 5px 10px var(--gameboy-light),
+        inset -5px -5px 10px var(--gameboy-dark),
+        0 10px 30px rgba(0,0,0,0.3);
+    position: relative;
+    transform: scale(0.9);
+}
+
+.gameboy-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.gameboy-logo {
+    color: var(--gameboy-dark);
+    font-weight: 900;
+}
+
+.logo-text {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.logo-subtitle {
+    font-size: 8px;
+    opacity: 0.7;
+    letter-spacing: 1px;
+}
+
+.power-led {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ff0000;
+    box-shadow: 0 0 10px #ff0000;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+.screen-container {
+    margin-bottom: 30px;
+}
+
+.screen-bezel {
+    background: var(--gameboy-dark);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 
+        inset 3px 3px 6px rgba(0,0,0,0.3),
+        inset -3px -3px 6px var(--gameboy-bg);
+}
+
+.screen {
+    width: 320px;
+    height: 288px;
+    background: var(--screen-bg);
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 2px 2px 4px var(--screen-dark);
+}
+
+.screen-content {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    color: var(--pixel-green);
+    font-family: 'Courier Prime', monospace;
+}
+
+.screen-label {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 10px;
+    color: var(--gameboy-dark);
+    letter-spacing: 1px;
+}
+
+/* Boot Screen */
+.boot-screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.pixel-logo {
+    font-family: 'Courier Prime', monospace;
+    font-size: 6px;
+    line-height: 1;
+    margin-bottom: 15px;
+    white-space: pre;
+}
+
+.boot-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 0px var(--screen-dark);
+}
+
+.boot-version {
+    font-size: 10px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+.boot-progress {
+    width: 200px;
+    height: 8px;
+    background: var(--screen-dark);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--pixel-green);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 4px;
+}
+
+.boot-text {
+    font-size: 12px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Main UI */
+.main-ui {
+    height: 100%;
+    position: relative;
+}
+
+.main-menu {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid var(--screen-dark);
+    margin-bottom: 10px;
+}
+
+.menu-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+}
+
+.agent-status {
+    display: flex;
+    gap: 3px;
+}
+
+.agent-indicator {
+    font-size: 12px;
+}
+
+.agent-indicator.wire { color: var(--wire-color); }
+.agent-indicator.suno { color: var(--suno-color); }
+.agent-indicator.djw { color: var(--djw-color); }
+
+.menu-items {
+    flex: 1;
+    padding: 10px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.menu-item:hover {
+    background: var(--screen-dark);
+    color: var(--screen-bg);
+}
+
+.menu-item.active {
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    box-shadow: 2px 2px 0px var(--screen-dark);
+}
+
+.menu-icon {
+    font-size: 16px;
+}
+
+/* App Screens */
+.app-screen {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--screen-bg);
+}
+
+.screen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 2px solid var(--screen-dark);
+    background: var(--screen-dark);
+    color: var(--screen-bg);
+}
+
+.screen-title {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.screen-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* Mission Control */
+.mission-content {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mission-input {
+    background: var(--screen-dark);
+    color: var(--screen-bg);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.input-label {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+#missionInput {
+    width: 100%;
+    background: var(--screen-bg);
+    color: var(--pixel-green);
+    border: 2px solid var(--pixel-green);
+    padding: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    border-radius: 3px;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+.mission-log {
+    flex: 1;
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.log-header {
+    padding: 10px;
+    border-bottom: 1px solid var(--screen-bg);
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.log-content {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+.log-entry {
+    margin-bottom: 5px;
+    display: flex;
+    gap: 10px;
+}
+
+.log-time {
+    color: var(--screen-light);
+    font-weight: bold;
+}
+
+/* Projects Screen */
+.projects-content {
+    flex: 1;
+    padding: 15px;
+}
+
+.project-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 8px;
+    background: var(--screen-dark);
+    color: var(--screen-bg);
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+.project-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.project-name {
+    font-weight: bold;
+    font-size: 11px;
+}
+
+.project-type, .project-status {
+    opacity: 0.8;
+}
+
+.project-actions {
+    display: flex;
+    gap: 5px;
+}
+
+/* Agents Screen */
+.agents-content {
+    flex: 1;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.agent-card {
+    background: var(--screen-dark);
+    color: var(--screen-bg);
+    border-radius: 5px;
+    padding: 12px;
+}
+
+.agent-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.agent-avatar {
+    font-size: 20px;
+}
+
+.agent-info {
+    flex: 1;
+}
+
+.agent-name {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.agent-role {
+    font-size: 9px;
+    opacity: 0.8;
+}
+
+.agent-power {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.power-bar {
+    width: 40px;
+    height: 6px;
+    background: var(--pixel-green);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.power-fill {
+    height: 100%;
+    background: var(--screen-bg);
+    transition: width 0.3s ease;
+}
+
+.power-level {
+    font-size: 8px;
+}
+
+.agent-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.skill-tag {
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 8px;
+}
+
+.agent-status-text {
+    font-size: 9px;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+/* Terminal Screen */
+.terminal-content {
+    flex: 1;
+    padding: 15px;
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    font-family: 'Courier Prime', monospace;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-output {
+    flex: 1;
+    overflow-y: auto;
+    font-size: 10px;
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.terminal-line {
+    margin-bottom: 2px;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+}
+
+.terminal-prompt {
+    color: var(--screen-light);
+    font-weight: bold;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--screen-bg);
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    outline: none;
+}
+
+/* Buttons */
+.btn-primary, .btn-action, .btn-back, .btn-small, .btn-execute {
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 3px;
+    font-family: 'Orbitron', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover, .btn-action:hover, .btn-back:hover, 
+.btn-small:hover, .btn-execute:hover {
+    background: var(--screen-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.btn-small {
+    padding: 4px 8px;
+    font-size: 8px;
+}
+
+/* Controls */
+.controls-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 20px;
+}
+
+.dpad {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    gap: 2px;
+    width: 60px;
+}
+
+.dpad-middle {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+}
+
+.dpad-button {
+    width: 18px;
+    height: 18px;
+    background: var(--gameboy-dark);
+    color: var(--gameboy-light);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 10px;
+    transition: all 0.1s ease;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.dpad-button:active {
+    transform: scale(0.95);
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.dpad-center {
+    background: var(--gameboy-bg);
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.button-row {
+    display: flex;
+    gap: 15px;
+}
+
+.game-button {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    box-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+}
+
+.btn-a {
+    background: var(--button-red);
+    color: white;
+}
+
+.btn-b {
+    background: var(--button-blue);
+    color: white;
+}
+
+.game-button:active {
+    transform: scale(0.95);
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.button-labels {
+    display: flex;
+    gap: 25px;
+    font-size: 8px;
+    color: var(--gameboy-dark);
+    font-weight: bold;
+}
+
+.bottom-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.system-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gameboy-dark);
+    color: var(--gameboy-light);
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.system-button:hover {
+    background: var(--gameboy-light);
+    color: var(--gameboy-dark);
+    transform: translateY(-1px);
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.screen-transition-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+.screen-transition-out {
+    animation: slideOut 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .gameboy-shell {
+        transform: scale(0.8);
+    }
+    
+    body {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .gameboy-shell {
+        transform: scale(0.7);
+    }
+    
+    body {
+        padding: 5px;
+    }
+}
+
+/* Sound Effect Styles */
+.sound-effect {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--pixel-green);
+    color: var(--screen-bg);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: 'Orbitron', monospace;
+    font-weight: bold;
+    z-index: 1000;
+    animation: soundPop 0.5s ease-out;
+    pointer-events: none;
+}
+
+@keyframes soundPop {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

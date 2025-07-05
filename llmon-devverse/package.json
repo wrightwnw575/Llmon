@@ -1,0 +1,25 @@
+{
+  "name": "llmon-devverse",
+  "version": "1.0.0",
+  "description": "LLMON: Next-Gen Developer Operating System with LLM Agents",
+  "type": "module",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "node server/index.js",
+    "build": "echo 'Building LLMON...'",
+    "start": "node server/index.js",
+    "test": "node test-system.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "@google/generative-ai": "^0.2.1",
+    "ws": "^8.14.2",
+    "socket.io": "^4.7.4",
+    "uuid": "^9.0.1",
+    "chokidar": "^3.5.3"
+  },
+  "keywords": ["llm", "agents", "development", "gameboy", "ui"],
+  "author": "Scout AI",
+  "license": "MIT"
+}
